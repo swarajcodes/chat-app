@@ -6,8 +6,7 @@ import { PORT } from "./config/env.js";
 import { connectToDatabase } from "./database/mongodb.js";
 import authRouter from "./routes/auth.routes.js";
 import messageRouter from "./routes/message.routes.js";
-
-const app = express();
+import { app, server } from "./config/socket.js";
 
 app.use(express.json());
 app.use(cookieparser());
@@ -27,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Chat Application backend");
 });
 
-app.listen(PORT, async () => {
+server.listen(PORT, async () => {
   console.log(
     `Chat Application Backend is running on port http://localhost:${PORT}`
   );
